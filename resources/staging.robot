@@ -11,3 +11,5 @@ ${exp_date}                     12/22
 ${domain}                       @master.dev.odoo.nanoramicapps.com
 ${guest_email}                  mfernandez+guest@paybygroup.com
 ${claim_page}                   https://varys.paybygroup.com/purchases/
+${email_g}                      mfernandez@paybygroup.com
+${pass_g}                       Lenovo@01
