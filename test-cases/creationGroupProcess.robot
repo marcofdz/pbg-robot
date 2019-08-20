@@ -57,15 +57,16 @@ ${numberCostRange}                  3
 #     ${groupName}=                   Get group name 
 #     Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
 
-# Create a group per slot with set cost based on group size
-#     [Documentation]                 User should be able to create a new group
-#     ${nameG}=                       FakerLibrary.Word
-#     Create group per slot and set cost based on group size     ${organizer_email}          ${nameG} ${nameGroup}     ${min}     ${max}     ${cost}        ${numberCostRange}
-#     ${groupName}=                   Get group name 
-#     Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
-Prueba Login gmail
-    Go to Gmail
-    Log in on gmail
+Create a group per slot with set cost based on group size
+    [Documentation]                 User should be able to create a new group
+    ${nameG}=                       FakerLibrary.Word
+    Create group per slot and set cost based on group size     ${organizer_email}          ${nameG} ${nameGroup}     ${min}     ${max}     ${cost}        ${numberCostRange}
+    ${groupName}=                   Get group name 
+    Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
+
+# Prueba Login gmail
+#     Go to Gmail
+#     Log in on gmail
 
 # Claim group
 #     ${group}                        Get group code        
