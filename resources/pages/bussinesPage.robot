@@ -38,7 +38,7 @@ Create group with multiple over time payments
     Input Text                      xpath:${name}               ${groupName}
     Input Text                      xpath:${costInput}          ${cost}
     Select From List By Value       xpath=${costType}           total
-    AAdd multiple payments in percentage       ${numbrePayments}
+    Add multiple payments in percentage       ${numbrePayments}
     Sleep                           3 second
     Click on send pay by group to customer 
 
@@ -98,7 +98,7 @@ Add multiple payments per slot
     ${slot}                     Convert To String          ${slot}
     :FOR        ${index}        IN RANGE        ${numberPayments}            
     \   Run Keyword If          ${index}>0      Click add new payment method  
-    \   Run Keyword If          ${index}<(${numberPayments}-1)     Input Text              xpath://input[@name="payments[${index}].perSlotAmount"]         ${slot}        ELSE       Set last payment per slot        ${index}
+    \   Input Text              xpath://input[@name="payments[${index}].perSlotAmount"]         ${slot}     
     \   Click Element           xpath://input[@name="payments[${index}].dueDeadline"]
     \   Sleep                   2 second 
 
@@ -127,7 +127,7 @@ Set cost based on group size
     \   ${numberText}           Evaluate    ${cost}-(50*${index}) 
     \   Log To Console          ${numberText}    
     \   Input Text              xpath://input[@name="costs[${index}].maxSlots"]         ${maxText}   
-    \   Input Text              xpath://input[@name="costs[${index}].amount"]           ${numberText}00
+    \   Input Text              xpath://div[@class="input-group"]/input[@name="costs[${index}].amount"]           ${numberText}00
     \   Sleep                   2 second
 
 
@@ -152,7 +152,7 @@ Create group per slot with multiple over time payments
     Input Text                      xpath:${name}               ${groupName}
     Input Text                      xpath:${costInput}          ${cost}
     Select From List By Value       xpath=${costType}           per_slot
-    Add multiple payments per slot  ${numbrePayments}
+    Add multiple payments per slot  ${numbrePayments}           ${cost}
     Sleep                           3 second
     Click on send pay by group to customer 
 
@@ -161,7 +161,6 @@ Create group per slot and set cost based on group size
     Click Element                   xpath:${createGroupLink}
     Input Text                      xpath:${EmailOrganizer}     ${organizer}  
     Input Text                      xpath:${name}               ${groupName}
-    Input Text                      xpath:${costInput}          ${cost}
     Select From List By Value       xpath=${costType}           per_slot
     Set cost based on group size    ${min}     ${max}     ${cost}        ${numberCostRange}
     Sleep                           3 second
@@ -171,8 +170,3 @@ Set last payment percentage
     [Arguments]     ${index}
     ${percen}=      Get Value        xpath://input[@name="payments[${index}].percentage"]
     Input Text      xpath://input[@name="payments[${index}].percentage"]         ${percen}
-
-Set last payment per slot
-    [Arguments]     ${index}
-    ${percen}=      Get Value        xpath://input[@name="payments[${index}].perSlotAmount"]
-    Input Text      xpath://input[@name="payments[${index}].perSlotAmount"]         ${percen}
