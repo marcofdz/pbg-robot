@@ -3,6 +3,7 @@
 Library                             XvfbRobot
 Library                             SeleniumLibrary
 Library                             String
+Library                             ImapLibrary
 Resource                            ../${set}
 
 *** Variables ***
@@ -17,19 +18,13 @@ ${textArea}                         //*[@id=":p5"]
 ${sendBnt}                          //*[@id=":nr"]
 
 *** Keywords ***
-Go to Gmail
-    Go to                       ${gmailURL}
-    Sleep                       3 seconds
-
-Log in on gmail
-    Input Text              ${user_gmail}                      ${email_g}
-    Click Element           xpath:${nextBnt}                   
-    Sleep                   1 seconds 
-    Input Text              xpath:${pass_gmail}                 ${pass_g}
-    Click Element           xpath:${nextBnt}
-    Sleep                   1 seconds  
+Go to claim group link   
+    [Arguments]     ${email}    
+    Open Mailbox	host=imap.gmail.com	    user=${email}               	    password=qafytmxigxjpsxeh
+    ${LATEST}=	    Wait For Email	        sender=info@paybygroup.com	        timeout=300
+    ${HTML}         Get Links From Email    ${LATEST}
+    Go To           ${HTML}
+    Sleep           3 second
 
 
-Claim group with welcome email
-    Go to Gmail
-    Log in on gmail
+# go to https://github.com/rickypc/robotframework-imaplibrary/pull/9/files
