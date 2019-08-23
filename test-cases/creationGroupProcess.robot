@@ -29,9 +29,12 @@ Create a group with total cost at one payment
     ${groupName}=                   Get group name 
     Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
     ${groupCode}=                   Get group code              
-    Go to claim group link          ${organizer_email}
+    Go to claim group link          ${organizer_email}          ${subject}  
     ${URL}=                         Get Location
     Should Contain                  ${URL}                      ${groupCode}
+    Login as organizer toggle claim page        ${password}
+    Click Create Group
+    Add new payment method          ${cardTxt}      ${cvvTxt}       ${expDateTxt}       ${nameTxt}
 
 # Create a group total with multiple payments
 #     [Documentation]                 User should be able to create a new group allowing multiple payments
