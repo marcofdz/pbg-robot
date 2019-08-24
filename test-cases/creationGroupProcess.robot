@@ -9,7 +9,7 @@ Library                             FakerLibrary
 
 
 *** Variables ***
-${nameGroup}                        Test
+${nameGroup}                        Test Group
 ${costGroup}                        450000
 ${cardTxt}                          4111111111111111
 ${cvvTxt}                           123
@@ -20,21 +20,24 @@ ${min}                              2
 ${max}                              4
 ${cost}                             500
 ${numberCostRange}                  3
+${org_email}                        mfernandez+test@paybygroup.com
 
 *** Test Cases ***
 Create a group with total cost at one payment
     [Documentation]                 User should be able to create a new group
     ${nameG}=                       FakerLibrary.Word
-    Create Group with total cost one payment          ${organizer_email}          ${nameG} ${nameGroup}        ${costGroup}
+    Create Group with total cost one payment          ${organizer_email}        ${nameG} ${nameGroup}        ${costGroup}
     ${groupName}=                   Get group name 
     Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
     ${groupCode}=                   Get group code              
-    Go to claim group link          ${organizer_email}          ${subject}  
+    Go to claim group link          ${organizer_email} 
     ${URL}=                         Get Location
     Should Contain                  ${URL}                      ${groupCode}
-    Login as organizer toggle claim page        ${password}
+    Login as organizer toggle claim page        ${password}         
     Click Create Group
-    Add new payment method          ${cardTxt}      ${cvvTxt}       ${expDateTxt}       ${nameTxt}
+    Click on join with
+    Page Should Contain Element     xpath://h1[@title="${nameG} ${nameGroup}"]
+
 
 # Create a group total with multiple payments
 #     [Documentation]                 User should be able to create a new group allowing multiple payments
@@ -53,6 +56,8 @@ Create a group with total cost at one payment
 # Create a group per slot cost at one payment
 #     [Documentation]                 User should be able to create a new group
 #     ${nameG}=                       FakerLibrary.Word
+    # ${org_email}=                   Catenate         ${user}${nameG}${domain}   #The email is type mfernandez+(word)@paybygroup.com
+    # Log To Console                  ${org_email}
 #     Create Group per slot one payment          ${organizer_email}          ${nameG} ${nameGroup}        ${costGroup}
 #     ${groupName}=                   Get group name 
 #     Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
