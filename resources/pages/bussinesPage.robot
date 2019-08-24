@@ -124,8 +124,7 @@ Set cost based on group size
     \   Sleep                   2 second 
     \   ${minText}              Evaluate    ${min}+(4*${index}) 
     \   ${maxText}              Evaluate    ${max}+(3*${index})
-    \   ${numberText}           Evaluate    ${cost}-(50*${index}) 
-    \   Log To Console          ${numberText}    
+    \   ${numberText}           Evaluate    ${cost}-(50*${index})   
     \   Input Text              xpath://input[@name="costs[${index}].maxSlots"]         ${maxText}   
     \   Input Text              xpath://div[@class="input-group"]/input[@name="costs[${index}].amount"]           ${numberText}00
     \   Sleep                   2 second
@@ -170,3 +169,7 @@ Set last payment percentage
     [Arguments]     ${index}
     ${percen}=      Get Value        xpath://input[@name="payments[${index}].percentage"]
     Input Text      xpath://input[@name="payments[${index}].percentage"]         ${percen}
+
+Go to business page
+    Go to           ${business_page} 
+    Sleep           2 second
