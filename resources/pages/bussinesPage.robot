@@ -19,6 +19,7 @@ ${costType}              //select[@name="costType"]
 ${allowOver}             //input[@name="allowMultiPayments"]
 ${setPrice}             //input[@name="allowPricingArray"]
 ${sendBnt}               //button[@name="button"]
+${createsingle}         //a[@title="Create single payer purchase"]
 
 *** Keywords ***
 Create Group with total cost one payment
@@ -173,3 +174,15 @@ Set last payment percentage
 Go to business page
     Go to           ${business_page} 
     Sleep           2 second
+
+Click on create single payer
+    Click Element   xpath:${createsingle} 
+    Sleep           2 second
+
+Create single payer
+    [Arguments]                     ${organizer}                ${groupName}        ${cost}
+    Input Text                      xpath:${EmailOrganizer}     ${organizer}  
+    Input Text                      xpath:${name}               ${groupName}
+    Input Text                      xpath:${costInput}          ${cost}
+    Sleep                           3 second
+    Click on send pay by group to customer 

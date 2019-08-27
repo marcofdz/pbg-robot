@@ -16,6 +16,9 @@ ${CreateGroup}                 //button[@type="submit"]
 ${guest_email}                 name:auth.email
 ${new_pass}                    name:auth.password
 ${NameOrg}                     name:organizerName
+${singlePlayerCard}             id:card_number
+
+
 *** Keywords ***
 Log out User     
     Click Element               xpath:${UserMenu} 
@@ -82,5 +85,16 @@ Get user name
     [Return]                        ${userName}
 
 Click on join with
+    Click Element           xpath:${CreateGroup}
+    Sleep                   2 second
+
+Add new payment method single payer
+    [Arguments]             ${userN}    ${passNew}       ${Card}         ${cvv}      ${ExpDate}      ${Name}
+    Sleep                   3 second
+    Input Text              ${new_pass}                    ${passNew}  
+    Input Text              ${singlePlayerCard}            ${Card}   
+    Input Text              ${cvvInp}                      ${cvv}  
+    Input Text              ${dateExp}                     ${ExpDate}  
+    Input Text              ${fullname}                    ${Name}          
     Click Element           xpath:${CreateGroup}
     Sleep                   2 second
