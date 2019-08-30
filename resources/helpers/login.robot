@@ -14,6 +14,7 @@ Star Browser
     Run Keyword If                  "${browser}"=="xvfb"    Run Ff Adv    ${portal}   ELSE IF     "${browser}"=="chrome"      Run Chrome Adv      ${portal}   ELSE    Run Ff Adv      ${portal}
     Set Selenium Implicit Wait      30 second
     Set Selenium Timeout            30 second
+    Maximize Browser Window
 
 Login Business Page
     Sleep                           2 second

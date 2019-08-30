@@ -97,7 +97,6 @@ Create a group per slot with multiple payments
     Click on join with
     Page Should Contain Element     xpath://h1[@title="${nameG} ${nameGroup}"]
 
-#Este test case tieneu una falla porque hay 2elementos con el mismo nombre, y el prmero esta desabilitado, el campo de cost.
 # Create a group per slot with set cost based on group size
 #     Go to business page
 #     ${nameG}=                       FakerLibrary.Word
@@ -111,6 +110,7 @@ Create a group per slot with multiple payments
 #     Click Create Group
 #     Click on join with
 #     Page Should Contain Element     xpath://h1[@title="${nameG} ${nameGroup}"]
+    
 
 *** Keywords ***
 Preparation

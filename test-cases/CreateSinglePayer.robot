@@ -33,7 +33,7 @@ Create a single payer purchase
     Go to claim group link          ${organizer_email} 
     ${URL}=                         Get Location
     Should Contain                  ${URL}                      ${groupCode}
-   
+    
 *** Keywords ***
 Preparation
     Star Browser                    ${business_page}              

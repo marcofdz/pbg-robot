@@ -1,10 +1,7 @@
 *** Settings ***
-
+Library                        RequestsLibrary
 
 *** Variable ***
-
-
-*** Keywords ***
 ${UserMenu}                    //button[@class="btn btn-link nav-link dropdown-toggle"]
 ${logOut}                      //a[@href="/logout"]
 ${contributeBtn}               //button[@class="btn btn-primary btn-block"]
@@ -25,6 +22,15 @@ Log out User
 Click on contribute button
     Click Element               xpath:${contributeBtn} 
     Sleep                       2 second
+
+Authenticate user session for REST API
+    CreateSession               paybygroup              https://hodor.paybygroup.com                verify=true
+    ${headers}=                 Create Dictionary       Content-Type=application/json
+    ${data}=                    Create Dictionary       email=${email_user}         password=${password_user} 
+    ${data_json}                json.dumps              ${data}   
+    ${resp}=                    Post Request            paybygroup             /consumer/users/authenticate       headers=${headers}       data=${data_json} 
+    ${session_id}=              Set Variable            ${resp.headers['Session-Id']}
+    [Return]                    ${session_id}
 
 Contribute to the group as guest_email
     [Arguments]                 

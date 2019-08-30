@@ -13,3 +13,5 @@ ${email_g}                      mfernandez@paybygroup.com
 ${pass_g}                       Lenovo@01
 ${user}                         mfernandez+
 ${domain}                       @paybygroup.com
+${email_user}                   mfernandez@paybygroup.com
+${password_user}                mfernandez
