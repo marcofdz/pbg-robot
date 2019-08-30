@@ -1,11 +1,13 @@
 *** Settings ***
 Suite Setup                         Preparation
+Suite Teardown                      Finish Suite
 Library                             SeleniumLibrary
 Resource                            ../resources/helpers/login.robot
 Resource                            ../resources/pages/bussinesPage.robot
 Resource                            ../resources/pages/claimPage.robot
 Library                             FakerLibrary                            
 Resource                            ../resources/pages/gmail.robot
+Resource                            ../resources/pages/resourcesPage.robot
 
 
 *** Variables ***

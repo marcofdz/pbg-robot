@@ -39,20 +39,20 @@ Create a group by API REST
     Log To Console              ${resp.json()}
     Set Global Variable         ${id}
 
-Use code in next API 
-    CreateSession               paybygroup              https://hodor.paybygroup.com                verify=true
-    ${headers}=                 Create Dictionary       Content-Type=application/json       Authorization=${Authorization}      Session-Id=${session_id}    Accept=*/*      Content-Length=52
-    ${group}                    Create Dictionary       split_type=${split}       min_slots=${min_slots} 
-    ${data}                     Create Dictionary       organizer_email=${organizer_email}      group=${group}
-    ${data_json}                json.dumps              ${data}
-    Log To Console              ${data_json}
-    ${resp}=                    Post Request            paybygroup             /purchases/${id}/claim       headers=${headers} 
-    Should Be Equal As Strings  ${resp.status_code}     200 
-    Log To Console              ${resp.json()}
-    ${resp_id}                  Get From Dictionary     ${resp.json()}          id
-    ${resp_status}              Get From Dictionary     ${resp.json()}          status
-    Should Be Equal As Strings  ${resp_id}              ${id}
-    Should Be Equal As Strings  ${resp_status}          active
+# Use code in next API 
+#     CreateSession               paybygroup              https://hodor.paybygroup.com                verify=true
+#     ${headers}=                 Create Dictionary       Content-Type=application/json       Authorization=${Authorization}      Session-Id=${session_id}    Accept=*/*      Content-Length=52
+#     ${group}                    Create Dictionary       split_type=${split}       min_slots=${min_slots} 
+#     ${data}                     Create Dictionary       organizer_email=${organizer_email}      group=${group}
+#     ${data_json}                json.dumps              ${data}
+#     Log To Console              ${data_json}
+#     ${resp}=                    Post Request            paybygroup             /purchases/${id}/claim       headers=${headers} 
+#     Should Be Equal As Strings  ${resp.status_code}     200 
+#     Log To Console              ${resp.json()}
+#     ${resp_id}                  Get From Dictionary     ${resp.json()}          id
+#     ${resp_status}              Get From Dictionary     ${resp.json()}          status
+#     Should Be Equal As Strings  ${resp_id}              ${id}
+#     Should Be Equal As Strings  ${resp_status}          active
 
 # Invite payer
 #     CreateSession               paybygroup              https://hodor.paybygroup.com                verify=true

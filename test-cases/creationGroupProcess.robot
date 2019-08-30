@@ -1,11 +1,13 @@
 *** Settings ***
 Suite Setup                         Preparation
+Suite Teardown                      Finish Suite
 Library                             SeleniumLibrary
 Resource                            ../resources/helpers/login.robot
 Resource                            ../resources/pages/bussinesPage.robot
 Resource                            ../resources/pages/claimPage.robot
 Resource                            ../resources/pages/gmail.robot
 Library                             FakerLibrary  
+Resource                            ../resources/pages/resourcesPage.robot
 
 
 *** Variables ***
@@ -97,20 +99,19 @@ Create a group per slot with multiple payments
     Click on join with
     Page Should Contain Element     xpath://h1[@title="${nameG} ${nameGroup}"]
 
-# Create a group per slot with set cost based on group size
-#     Go to business page
-#     ${nameG}=                       FakerLibrary.Word
-#     Create group per slot and set cost based on group size     ${organizer_email}          ${nameG} ${nameGroup}     ${min}     ${max}     ${cost}        ${numberCostRange}
-#     ${groupName}=                   Get group name 
-#     Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
-#     ${groupCode}=                   Get group code              
-#     Go to claim group link          ${organizer_email} 
-#     ${URL}=                         Get Location
-#     Should Contain                  ${URL}                      ${groupCode}       
-#     Click Create Group
-#     Click on join with
-#     Page Should Contain Element     xpath://h1[@title="${nameG} ${nameGroup}"]
-    
+Create a group per slot with set cost based on group size
+    Go to business page
+    ${nameG}=                       FakerLibrary.Word
+    Create group per slot and set cost based on group size     ${organizer_email}          ${nameG} ${nameGroup}     ${min}     ${max}     ${cost}        ${numberCostRange}
+    ${groupName}=                   Get group name 
+    Should Be Equal                 ${groupName}                ${nameG} ${nameGroup} 
+    ${groupCode}=                   Get group code              
+    Go to claim group link          ${organizer_email} 
+    ${URL}=                         Get Location
+    Should Contain                  ${URL}                      ${groupCode}       
+    Click Create Group
+    Click on join with
+    Page Should Contain Element     xpath://h1[@title="${nameG} ${nameGroup}"] 
 
 *** Keywords ***
 Preparation

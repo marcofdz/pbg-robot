@@ -32,17 +32,6 @@ Authenticate user session for REST API
     ${session_id}=              Set Variable            ${resp.headers['Session-Id']}
     [Return]                    ${session_id}
 
-Contribute to the group as guest_email
-    [Arguments]                 
-    contributeGroupAsGuest(Card:string, cvv:string, ExpDate:string, fullName:string, email:string, pass:string){
-        wd.setValue(this.elements.cardNumber, Card);
-        wd.setValue(this.elements.cvv, cvv);
-        wd.setValue(this.elements.fullname, ExpDate);
-        wd.setValue(this.elements.expDate, fullName);
-        wd.setValue(this.elements.guest_email, email);
-        wd.setValue(this.elements.guest_pass, pass);
-        wd.click(this.elements.CreateGroup);
-    }
+Finish Suite
+    Close All Browsers
 
-    getUserName(){
-        wd.getText(this.elements.UserMenu);

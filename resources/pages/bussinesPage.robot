@@ -127,7 +127,7 @@ Set cost based on group size
     \   ${maxText}              Evaluate    ${max}+(3*${index})
     \   ${numberText}           Evaluate    ${cost}-(50*${index})   
     \   Input Text              xpath://input[@name="costs[${index}].maxSlots"]         ${maxText}   
-    \   Input Text              xpath://div[@class="input-group"]/input[@name="costs[${index}].amount"]           ${numberText}00
+    \   Input Text              xpath://div[@class="row mb-2"]/div[3]/div/div/input[@name='costs[${index}].amount' and @required='']           ${numberText}00
     \   Sleep                   2 second
 
 

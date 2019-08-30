@@ -19,7 +19,7 @@ ${sendBnt}                          //*[@id=":nr"]
 
 *** Keywords ***
 Go to claim group link   
-    [Arguments]     ${email}   
+    [Arguments]     ${email}    
     Open Mailbox	host=imap.gmail.com	    user=${email}               	    password=qafytmxigxjpsxeh
     ${LATEST}=	    Wait For Email	        sender=info@paybygroup.com	        timeout=300
     ${HTML}         Get Links From Email    ${LATEST}
